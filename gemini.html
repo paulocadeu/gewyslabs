@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GewysLabs — Gestão de Negócios & Qualidade de Software</title>
+    <style>
+        /* CSS Reset & Base Variables */
+        :root {
+            --bg-color: #0d1117;
+            --card-bg: #161b22;
+            --card-border: #30363d;
+            --text-main: #f0f6fc;
+            --text-muted: #8b949e;
+            --accent-cyan: #00f2fe;
+            --accent-blue: #4facfe;
+            --accent-glow: rgba(0, 242, 254, 0.15);
+            --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-family);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Container & Layout Utilities */
+        .container {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .section-padding {
+            padding: 96px 0;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
+            color: #040d1a;
+            font-weight: 700;
+            font-size: 1rem;
+            padding: 16px 36px;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px var(--accent-glow);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 28px rgba(0, 242, 254, 0.35);
+        }
+
+        /* Header / Navbar */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(13, 17, 23, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--card-border);
+            z-index: 1000;
+            padding: 18px 0;
+        }
+
+        .nav-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: var(--text-main);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--accent-cyan);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-main);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding-top: 180px;
+            padding-bottom: 120px;
+            position: relative;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 48px;
+            align-items: center;
+        }
+
+        .hero h1 {
+            font-size: 3.2rem;
+            line-height: 1.15;
+            font-weight: 800;
+            margin-bottom: 24px;
+            letter-spacing: -1px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 36px;
+            max-width: 600px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(0, 242, 254, 0.1);
+            color: var(--accent-cyan);
+            border: 1px solid rgba(0, 242, 254, 0.3);
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .hero-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            position: relative;
+        }
+
+        .hero-card::before {
+            content: '';
+            position: absolute;
+            top: -1px; left: -1px; right: -1px; bottom: -1px;
+            background: linear-gradient(135deg, var(--accent-cyan), transparent);
+            border-radius: 16px;
+            z-index: -1;
+            opacity: 0.3;
+        }
+
+        .stat-box {
+            border-bottom: 1px solid var(--card-border);
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+        }
+
+        .stat-box:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+            margin-bottom: 0;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--accent-cyan);
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* Section Headings */
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+            letter-spacing: -0.5px;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 640px;
+            margin: 0 auto 64px auto;
+        }
+
+        /* Problems / Dores Section */
+        .problems-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 24px;
+        }
+
+        .problem-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 28px;
+            transition: border-color 0.3s ease;
+        }
+
+        .problem-card:hover {
+            border-color: rgba(0, 242, 254, 0.4);
+        }
+
+        .problem-icon {
+            font-size: 1.8rem;
+            margin-bottom: 16px;
+        }
+
+        .problem-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--text-main);
+        }
+
+        .problem-card p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        /* Services Section */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 32px;
+        }
+
+        .service-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 36px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .service-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 16px;
+            color: var(--text-main);
+        }
+
+        .service-card ul {
+            list-style: none;
+            margin-top: 20px;
+        }
+
+        .service-card li {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+            padding-left: 24px;
+            position: relative;
+        }
+
+        .service-card li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--accent-cyan);
+            font-weight: bold;
+        }
+
+        /* Comparison Table */
+        .comparison-wrapper {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            overflow: hidden;
+            margin-top: 40px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        th, td {
+            padding: 20px 28px;
+            border-bottom: 1px solid var(--card-border);
+        }
+
+        th {
+            background-color: rgba(255,255,255,0.02);
+            font-size: 1.05rem;
+            font-weight: 700;
+        }
+
+        td {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        td.highlight {
+            color: var(--text-main);
+            font-weight: 600;
+            background: rgba(0, 242, 254, 0.03);
+        }
+
+        /* Methodology / Steps */
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 24px;
+        }
+
+        .step-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 28px;
+            position: relative;
+        }
+
+        .step-number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: rgba(255,255,255,0.1);
+            position: absolute;
+            top: 16px;
+            right: 20px;
+        }
+
+        .step-card h3 {
+            font-size: 1.15rem;
+            margin-bottom: 12px;
+            color: var(--accent-cyan);
+        }
+
+        .step-card p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(180deg, var(--bg-color), #040d1a);
+            border-top: 1px solid var(--card-border);
+            text-align: center;
+        }
+
+        .cta-box {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 64px 32px;
+            box-shadow: 0 0 50px rgba(0, 242, 254, 0.08);
+        }
+
+        .cta-box h2 {
+            font-size: 2.4rem;
+            margin-bottom: 16px;
+        }
+
+        .cta-box p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 36px auto;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--card-border);
+            padding: 40px 0;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Breakpoints */
+        @media (max-width: 900px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .nav-links {
+                display: none; /* Em produção seria adicionado um menu hambúrguer JS */
+            }
+        }
+
+        @media (max-width: 600px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 1.75rem;
+            }
+
+            th, td {
+                padding: 14px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header / Navbar -->
+    <header>
+        <div class="container nav-wrapper">
+            <a href="#" class="logo">Gewys<span>Labs</span></a>
+            <ul class="nav-links">
+                <li><a href="#problemas">Desafios</a></li>
+                <li><a href="#solucao">Solução</a></li>
+                <li><a href="#servicos">Serviços</a></li>
+                <li><a href="#metodologia">Metodologia</a></li>
+            </ul>
+            <a href="#agendar" class="btn" style="padding: 10px 20px; font-size: 0.85rem;">Agendar Diagnóstico</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-grid">
+            <div>
+                <span class="hero-badge">Quality-Driven Product Management</span>
+                <h1>Transforme o caos de software em entregas <span class="gradient-text">previsíveis e escaláveis.</span></h1>
+                <p>Unimos a visão estratégica de Product Management à precisão do Quality Assurance para eliminar o retrabalho e acelerar o crescimento do seu negócio.</p>
+                <a href="#agendar" class="btn">Agendar Diagnóstico Gratuito</a>
+            </div>
+            <div class="hero-card">
+                <div class="stat-box">
+                    <div class="stat-number">-60%</div>
+                    <div class="stat-label">Redução média em retrabalho pós-implantação</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Alinhamento entre requisitos de negócio e engenharia</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">Shift-Left</div>
+                    <div class="stat-label">Cultura de qualidade integrada desde o primeiro dia</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problemas Section -->
+    <section id="problemas" class="section-padding" style="background-color: #0b0e14;">
+        <div class="container">
+            <h2 class="section-title text-center">Sua empresa enfrenta esses desafios?</h2>
+            <p class="section-subtitle text-center">Identifique os gargalos que estão travando a tração e a lucratividade do seu produto.</p>
+            
+            <div class="problems-grid">
+                <div class="problem-card">
+                    <div class="problem-icon">🛑</div>
+                    <h3>Retrabalho Constante</h3>
+                    <p>Funcionalidades retornam repetidamente por falta de clareza nos requisitos e alinhamento inicial.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon">🐛</div>
+                    <h3>Bugs em Produção</h3>
+                    <p>A equipe passa mais tempo apagando incêndios operacionais do que inovando no roadmap.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon">⚡</div>
+                    <h3>Ruído de Comunicação</h3>
+                    <p>A diretoria pede uma solução estratégica, mas o time de engenharia entrega algo desalinhado.</p>
+                </div>
+                <div class="problem-card">
+                    <div class="problem-icon">⏳</div>
+                    <h3>Atrasos e Incerteza</h3>
+                    <p>Roadmaps que sofrem alterações constantes e prazos de entrega que não se sustentam.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solução / Diferencial -->
+    <section id="solucao" class="section-padding">
+        <div class="container">
+            <h2 class="section-title text-center">Construa o produto certo, <span class="gradient-text">da forma certa.</span></h2>
+            <p class="section-subtitle text-center">A GewysLabs oferece uma abordagem híbrida única no mercado.</p>
+
+            <div class="comparison-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Desafio de Mercado</th>
+                            <th>A Abordagem GewysLabs</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Consultorias focadas apenas em métricas teóricas.</td>
+                            <td class="highlight">Prática real: Experiência hands-on da linha de frente do QA até a gestão do produto.</td>
+                        </tr>
+                        <tr>
+                            <td>Foco excessivo em velocidade sem estabilidade.</td>
+                            <td class="highlight">Quality-Driven Management: Velocidade sustentável com qualidade embutida (Shift-Left).</td>
+                        </tr>
+                        <tr>
+                            <td>Dificuldade de diálogo entre diretores e desenvolvedores.</td>
+                            <td class="highlight">Linguagem híbrida: Tradução perfeita entre dores do negócio e especificações técnicas.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Serviços Section -->
+    <section id="servicos" class="section-padding" style="background-color: #0b0e14;">
+        <div class="container">
+            <h2 class="section-title text-center">Soluções de Consultoria</h2>
+            <p class="section-subtitle text-center">Programas sob medida para elevar a maturidade do seu ciclo de software.</p>
+
+            <div class="services-grid">
+                <div class="service-card">
+                    <div>
+                        <h3>Diagnóstico & Governança de QA</h3>
+                        <p style="color: var(--text-muted); font-size: 0.95rem;">Estruturação de processos para eliminar falhas e garantir previsibilidade.</p>
+                        <ul>
+                            <li>Auditoria completa nos fluxos de testes</li>
+                            <li>Implementação de Cultura Shift-Left</li>
+                            <li>Prevenção de falhas pré-produção</li>
+                            <li>Padronização de critérios de aceite</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div>
+                        <h3>Otimização de Product Management</h3>
+                        <p style="color: var(--text-muted); font-size: 0.95rem;">Alinhamento entre o backlog técnico e os objetivos de receita.</p>
+                        <ul>
+                            <li>Refinamento e estruturação de Backlog</li>
+                            <li>Métricas de Produto (KPIs e OKRs)</li>
+                            <li>Priorização baseada em ROI de negócio</li>
+                            <li>Documentação e estórias claras</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div>
+                        <h3>Integração Negócio & Engenharia</h3>
+                        <p style="color: var(--text-muted); font-size: 0.95rem;">Facilitação e ponta de lança entre o board executivo e o time dev.</p>
+                        <ul>
+                            <li>Alinhamento de expectativas e comunicação</li>
+                            <li>Apoio em processos ágeis sob medida</li>
+                            <li>Capacitação e mentoria interna</li>
+                            <li>Garantia de entregas alinhadas ao mercado</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Metodologia -->
+    <section id="metodologia" class="section-padding">
+        <div class="container">
+            <h2 class="section-title text-center">Nossa Metodologia</h2>
+            <p class="section-subtitle text-center">Uma jornada clara em 4 etapas para a transformação dos seus processos.</p>
+
+            <div class="steps-grid">
+                <div class="step-card">
+                    <span class="step-number">01</span>
+                    <h3>Diagnóstico</h3>
+                    <p>Mapeamento profundo dos gargalos de comunicação, qualidade e gestão atuais.</p>
+                </div>
+                <div class="step-card">
+                    <span class="step-number">02</span>
+                    <h3>Estratégia</h3>
+                    <p>Desenho de um plano de ação personalizado com metas claras de curto e longo prazo.</p>
+                </div>
+                <div class="step-card">
+                    <span class="step-number">03</span>
+                    <h3>Execução</h3>
+                    <p>Atuação guiada lado a lado com sua equipe para implementação dos novos processos.</p>
+                </div>
+                <div class="step-card">
+                    <span class="step-number">04</span>
+                    <h3>Autonomia</h3>
+                    <p>Consolidação dos indicadores de sucesso para que seu time mantenha a alta performance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Final -->
+    <section id="agendar" class="section-padding cta-section">
+        <div class="container">
+            <div class="cta-box">
+                <h2>Pronto para elevar o nível das suas entregas?</h2>
+                <p>Elimine o desperdício com retrabalho e crie produtos que realmente aceleram o seu negócio. Agende uma sessão diagnóstica de 30 minutos sem custo.</p>
+                <a href="mailto:contato@gewyslabs.com" class="btn">Agendar Sessão Diagnóstica</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 GewysLabs. Todos os direitos reservados. | Quality-Driven Product Management</p>
+        </div>
+    </footer>
+
+</body>
+</html>
