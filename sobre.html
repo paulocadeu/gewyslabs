@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sobre — Gewyslabs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --primary: #0f172a;
+      --primary-light: #1e293b;
+      --accent: #6366f1;
+      --accent-hover: #4f46e5;
+      --accent-soft: #eef2ff;
+      --text: #1e293b;
+      --text-muted: #64748b;
+      --text-light: #94a3b8;
+      --border: #e2e8f0;
+      --radius: 14px;
+      --shadow: 0 4px 24px rgba(0,0,0,0.06);
+      --shadow-lg: 0 20px 60px rgba(0,0,0,0.08);
+      --transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      --nav-bg: rgba(255,255,255,0.85);
+      --hero-glow: rgba(99,102,241,0.08);
+      --stat-bg: var(--bg);
+    }
+
+    [data-theme="dark"] {
+      --bg: #0b0f19;
+      --surface: #131a2b;
+      --primary: #f1f5f9;
+      --primary-light: #e2e8f0;
+      --accent: #818cf8;
+      --accent-hover: #6366f1;
+      --accent-soft: #1e1f4b;
+      --text: #e2e8f0;
+      --text-muted: #94a3b8;
+      --text-light: #64748b;
+      --border: #1e293b;
+      --shadow: 0 4px 24px rgba(0,0,0,0.3);
+      --shadow-lg: 0 20px 60px rgba(0,0,0,0.4);
+      --nav-bg: rgba(11,15,25,0.9);
+      --hero-glow: rgba(129,140,248,0.12);
+      --stat-bg: #0b0f19;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      transition: background var(--transition), color var(--transition);
+    }
+
+    .container {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      background: var(--nav-bg);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      z-index: 100;
+      height: 64px;
+      display: flex;
+      align-items: center;
+    }
+
+    nav .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    .logo {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--primary);
+      letter-spacing: -0.03em;
+      text-decoration: none;
+    }
+
+    .nav-links { display: flex; gap: 32px; align-items: center; }
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color var(--transition);
+    }
+    .nav-links a:hover { color: var(--primary); }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 24px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: all var(--transition);
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+    }
+    .btn-primary:hover {
+      background: var(--accent-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px color-mix(in srgb, var(--accent) 35%, transparent);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--primary);
+      border: 1.5px solid var(--border);
+    }
+    .btn-outline:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    section { padding: 120px 0 100px; }
+
+    .section-tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: 2.4rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--primary);
+      margin-bottom: 16px;
+    }
+
+    #sobre {
+      background: var(--surface);
+      min-height: 100vh;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      margin-top: 48px;
+    }
+
+    .about-text h3 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: var(--primary);
+    }
+
+    .about-text p {
+      color: var(--text-muted);
+      margin-bottom: 16px;
+      font-size: 1rem;
+    }
+
+    .about-text p strong {
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .timeline {
+      position: relative;
+      padding-left: 28px;
+      border-left: 2px solid var(--border);
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 28px;
+      padding-left: 20px;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -35px;
+      top: 6px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 3px solid var(--accent-soft);
+    }
+
+    .timeline-year {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .timeline-role {
+      font-weight: 700;
+      color: var(--primary);
+      margin: 4px 0 2px;
+    }
+
+    .timeline-desc {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .back-link {
+      margin-top: 48px;
+      text-align: center;
+    }
+
+    footer {
+      padding: 40px 0;
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+
+    footer p {
+      font-size: 0.85rem;
+      color: var(--text-light);
+    }
+
+    .theme-toggle {
+      background: none;
+      border: 1.5px solid var(--border);
+      border-radius: 8px;
+      width: 38px;
+      height: 38px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all var(--transition);
+      color: var(--text-muted);
+      font-size: 1.1rem;
+      padding: 0;
+      line-height: 1;
+    }
+    .theme-toggle:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--accent-soft);
+    }
+    .theme-toggle .icon-sun,
+    [data-theme="dark"] .theme-toggle .icon-moon {
+      display: inline;
+    }
+    .theme-toggle .icon-moon,
+    [data-theme="dark"] .theme-toggle .icon-sun {
+      display: none;
+    }
+
+    @media (max-width: 768px) {
+      section { padding: 100px 0 60px; }
+      .section-title { font-size: 1.8rem; }
+      .about-grid { grid-template-columns: 1fr; gap: 40px; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="container">
+      <a href="index.html" class="logo">Gewyslabs</a>
+      <div class="nav-links">
+        <a href="index.html">Início</a>
+        <a href="sobre.html" style="color:var(--accent);font-weight:600;">Sobre</a>
+        <a href="index.html#servicos">Serviços</a>
+        <a href="index.html#metodologia">Metodologia</a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Alternar tema">
+          <span class="icon-sun">☀️</span>
+          <span class="icon-moon">🌙</span>
+        </button>
+        <a href="index.html#contato" class="btn btn-primary">Conversar</a>
+      </div>
+    </div>
+  </nav>
+
+  <section id="sobre">
+    <div class="container">
+      <div class="section-tag">Quem está por trás</div>
+      <h2 class="section-title">Uma ponte entre<br />qualidade e negócio</h2>
+      <div class="about-grid">
+        <div class="about-text">
+          <h3>Géwisca Bárbara — De testadora a estrategista</h3>
+          <p>
+            Minha carreira começou onde a qualidade realmente acontece:
+            <strong>na linha de frente dos testes</strong>. Na Cilia Tecnologia,
+            atuei como QA garantindo que produtos de software atendessem aos mais
+            altos padrões — escrevendo cenários, automatizando com Capybara,
+            Cucumber e Ruby, e aprendendo na prática o que faz um software
+            realmente funcionar bem.
+          </p>
+          <p>
+            Depois, migrei para <strong>gestão de produtos</strong>.
+            Como Associate Product Manager, liderei roadmaps, priorizei backlogs
+            e traduzi visão de negócio em requisitos. Foi quando entendi que o
+            maior gargalo não era técnico — era a <strong>falta de integração</strong>
+            entre qualidade e estratégia.
+          </p>
+          <p>
+            Hoje, como consultora, uso esses dois mundos para ajudar empresas a
+            construir produtos digitais B2B <strong>confiáveis e escaláveis</strong>,
+            com qualidade previsível e sem abrir mão da velocidade de entrega.
+          </p>
+        </div>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-year">2019 — 2024</div>
+            <div class="timeline-role">Quality Assurance — Cilia Tecnologia</div>
+            <div class="timeline-desc">Testes manuais e automatizados (Capybara, Cucumber, Ruby), planejamento de qualidade</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">2022 — 2024</div>
+            <div class="timeline-role">Associate Product Manager — Cilia Tecnologia</div>
+            <div class="timeline-desc">Liderança de produto, OKRs, discovery, priorização de backlog</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">2025</div>
+            <div class="timeline-role">Product Management — PM3</div>
+            <div class="timeline-desc">Certificação em Product Management</div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">Hoje</div>
+            <div class="timeline-role">Gewyslabs — Consultoria</div>
+            <div class="timeline-desc">Unindo qualidade e gestão para produtos B2B confiáveis e escaláveis</div>
+          </div>
+        </div>
+      </div>
+      <div class="back-link">
+        <a href="index.html" class="btn btn-outline">← Voltar para página inicial</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>© 2026 Gewyslabs. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+  <script>
+    const themeToggle = document.getElementById('themeToggle');
+    const html = document.documentElement;
+    const saved = localStorage.getItem('gewys-theme');
+    if (saved) html.setAttribute('data-theme', saved);
+    else if (window.matchMedia('(prefers-color-scheme: dark)').matches)
+      html.setAttribute('data-theme', 'dark');
+
+    themeToggle.addEventListener('click', () => {
+      const current = html.getAttribute('data-theme');
+      const next = current === 'dark' ? 'light' : 'dark';
+      html.setAttribute('data-theme', next);
+      localStorage.setItem('gewys-theme', next);
+    });
+  </script>
+</body>
+</html>
